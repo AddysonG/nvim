@@ -17,18 +17,21 @@ return {
             local screen_width = vim.o.columns
             local screen_height = vim.o.lines - vim.o.cmdheight - 1
 
-            local float_width = math.min(80, math.floor(screen_width * 0.85))
+            local float_width = math.min(60, math.floor(screen_width * 0.85))
             local float_height = math.floor(screen_height * 0.85 - 1)
 
             float_width = float_width + ((float_width + screen_width) % 2)
+
+            local top_row = math.floor((screen_height - float_height) * 0.5)
+            local left_col = math.floor((screen_width - float_width) * 0.5)
 
             return {
               border = 'rounded',
               relative = 'editor',
               width = float_width,
               height = float_height,
-              row = math.floor((screen_height - float_height) * 0.5),
-              col = math.floor((screen_width - float_width) * 0.5),
+              row = top_row,
+              col = left_col - 1,
             }
           end
         },
