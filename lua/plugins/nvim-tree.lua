@@ -40,7 +40,10 @@ return {
         group_empty = true,
         icons = {
           git_placement = 'after',
-        }
+        },
+        root_folder_label = function(path)
+          return path:gsub('\\', '/')
+        end,
       },
       filters = { dotfiles = false },
     })

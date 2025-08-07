@@ -36,6 +36,8 @@ return {
       },
       color_overrides = {},
       custom_highlights = function(c)
+        local menu_bg = { bg = c.surface0 }
+
         return {
           ColorColumn = { link = 'CursorLine' },
           -- Spell
@@ -54,9 +56,14 @@ return {
           LineNr = { fg = c.overlay0 },
           CursorLineNr = { fg = c.blue, style = { 'bold' } },
           -- Popup menu
-          Pmenu = { bg = c.surface0 },
+          Pmenu = menu_bg,
           PmenuSel = { bg = c.surface1, style = { 'bold' } },
           LspSignatureActiveParameter = { bg = c.surface1, style = { 'bold' } },
+          BlinkCmpDoc = menu_bg,
+          BlinkCmpDocBoarder = menu_bg,
+          BlinkCmpDocSeparator = menu_bg,
+          BlinkCmpSignatureHelp = menu_bg,
+          BlinkCmpSignatureHelpBorder = menu_bg,
           -- Diagnostic sign
           DiagnosticSignError = { fg = c.red },
           DiagnosticSignWarn = { fg = c.yellow },

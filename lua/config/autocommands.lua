@@ -52,20 +52,16 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
 -- Only highlight cursor row and color column for active window
 
-local active_window_augroup = vim.api.nvim_create_augroup(
-  'ActiveWindowVisuals', { clear = true }
-)
-
 vim.api.nvim_create_autocmd('WinEnter', {
-  group = active_window_augroup,
   callback = function()
     vim.wo.cursorline = true
   end,
 })
 
 vim.api.nvim_create_autocmd('WinLeave', {
-  group = active_window_augroup,
   callback = function()
     vim.wo.cursorline = false
   end,
 })
+
+
