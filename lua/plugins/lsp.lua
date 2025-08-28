@@ -9,20 +9,56 @@ return {
     opts = {
       ensure_installed = {
         'cssls',
+        'gopls',
         'html',
         'jdtls',
         'lua_ls',
         'pyright',
         'ts_ls',
       },
-      {
-        automatic_enable = {
-          exclude = {
-            'jdtls',
-          },
-        },
+      automatic_enable = {
+        exclude = { 'jdtls' },
       },
     },
+    config = function(_, opts)
+      local mason_lspconfig = require('mason-lspconfig')
+      mason_lspconfig.setup(opts)
+
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+      -- Make LSP configs include blink capabilities by default
+      for _, name in ipairs({ 'cssls', 'html', 'lua_ls', 'ts_ls' }) do
+        vim.lsp.config(name, {capabilities = capabilities })
+      end
+
+      vim.lsp.config('gopls', {
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            analyses = { unusedparams = true, shadow = true },
+            staticcheck = true,
+            hints = {
+              assignVariableTypes    = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes  = true,
+              constantValues         = true,
+              functionTypeParameters = true,
+              parameterNames         = true,
+              rangeVariableTypes     = true,
+            },
+          }
+        }
+      })
+
+      vim.lsp.config('pyright', {
+        capabilities = capabilities,
+        settings = {
+          python = {
+            pythonPath = require('helpers.python').get_python_path(),
+          }
+        }
+      })
+    end
   },
   {
     'neovim/nvim-lspconfig',
@@ -34,9 +70,6 @@ return {
       inlay_hints = { enabled = true },
     },
     config = function()
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local lspconfig = require('lspconfig')
-
       vim.diagnostic.config({
         float = { border = 'rounded' },
       })
@@ -50,20 +83,6 @@ return {
         cfg.border = 'rounded'
         return vim.lsp.handlers.signature_help(_, result, ctx, cfg)
       end
-
-
-      lspconfig.lua_ls.setup { capabilities = capabilities }
-      lspconfig.ts_ls.setup{ capabilities = capabilities }
-      lspconfig.cssls.setup { capabilities = capabilities }
-      lspconfig.html.setup { capabilities = capabilities }
-      lspconfig.pyright.setup {
-        capabilities = capabilities,
-        settings = {
-          python = {
-            pythonPath = require('helpers.python').get_python_path(),
-          }
-        }
-      }
 
       -- Keymaps
       local builtin = require('telescope.builtin')

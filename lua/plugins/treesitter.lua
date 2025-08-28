@@ -14,7 +14,12 @@ return {
         'diff',
         'dockerfile',
         'gitignore',
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
         'html',
+        'hyprlang',
         'java',
         'javadoc',
         'javascript',
@@ -31,6 +36,10 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true },
+    })
+
+    vim.filetype.add({
+      pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
     })
   end
 }

@@ -64,4 +64,12 @@ vim.api.nvim_create_autocmd('WinLeave', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.doc.html',
+  callback = function(args)
+    local input = args.file
+    local output = input:gsub('%.doc.html$', '.pdf')
+    vim.fn.jobstart({ 'wkhtmltopdf', input, output }, { detach = true })
+  end,
+})
 
