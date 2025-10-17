@@ -15,6 +15,7 @@ return {
         'lua_ls',
         'pyright',
         'ts_ls',
+        'clangd',
       },
       automatic_enable = {
         exclude = { 'jdtls' },
@@ -57,6 +58,14 @@ return {
             pythonPath = require('helpers.python').get_python_path(),
           }
         }
+      })
+
+      vim.lsp.config('clangd', {
+        capabilities = capabilities,
+        cmd = { 'clangd', '--background-index', '--clang-tidy=false' },
+        init_options = {
+          clangdFileStatus = true,
+        },
       })
     end
   },

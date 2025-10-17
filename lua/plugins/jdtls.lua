@@ -2,6 +2,7 @@ return {
   'mfussenegger/nvim-jdtls',
   dependencies = {
     'mason-org/mason.nvim',
+    'mfussenegger/nvim-dap',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
   },
   ft = { 'java' },

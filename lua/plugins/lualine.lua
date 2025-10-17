@@ -24,7 +24,7 @@ return {
         icons_enabled = true,
         theme = 'auto',
         component_separators = { left = '|', right = '|'},
-        section_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -44,8 +44,8 @@ return {
           { 'mode', color = { gui = 'bold' } }
         },
         lualine_b = filename_or_path,
-        lualine_c = {'branch', 'diff', 'diagnostics'},
-        lualine_x = {},
+        lualine_c = {'diagnostics'},
+        lualine_x = {'branch', 'diff'},
         lualine_y = {'progress'},
         lualine_z = {'location'},
       },

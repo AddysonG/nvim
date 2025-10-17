@@ -16,7 +16,7 @@ vim.opt.signcolumn = 'yes'      -- Sign column
 
 vim.opt.cursorline = true       -- Highlight current line
 
-vim.opt.scrolloff = 8           -- Scrolloff
+vim.opt.scrolloff = 4           -- Scrolloff
 vim.opt.wrap = false            -- Turn off line wrapping
 
 vim.opt.tabstop = 4             -- Visual size of tabs
@@ -35,3 +35,9 @@ vim.opt.spelloptions = 'camel'
 vim.opt.showtabline = 0
 
 vim.opt.fillchars:append('eob: ')
+
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = "→ ",
+  trail = "·",
+}
