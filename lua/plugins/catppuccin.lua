@@ -40,6 +40,7 @@ return {
         local menu_bg = { bg = c.surface0 }
 
         return {
+          Visual = { style = { } },
           ColorColumn = { link = 'CursorLine' },
           -- Spell
           SpellBad = { sp = c.blue, style = { 'undercurl' } },
@@ -75,13 +76,14 @@ return {
           DapBreakpointConditionSign = { fg = c.yellow },
           DapBreakpointRejectedSign  = { fg = c.red },
           -- Rainbow delimiters
-          RainbowDelimiterRed     = { fg = blend(c.red, c.text, 0.5) },
-          RainbowDelimiterYellow  = { fg = blend(c.yellow, c.text, 0.5) },
-          RainbowDelimiterBlue    = { fg = blend(c.blue, c.text, 0.5) },
-          RainbowDelimiterOrange  = { fg = blend(c.peach, c.text, 0.5) },
-          RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.5) },
-          RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.5) },
-          RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.5) },
+          RainbowDelimiterRed     = { fg = blend(c.red, c.text, 0.7) },
+          RainbowDelimiterYellow  = { fg = blend(c.yellow, c.text, 0.7) },
+          RainbowDelimiterBlue    = { fg = blend(c.blue, c.text, 0.7) },
+          RainbowDelimiterOrange  = { fg = blend(c.peach, c.text, 0.7) },
+          RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.7) },
+          RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.7) },
+          RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.7) },
+          MatchParen = { fg = c.none, bg = c.surface1, style = { 'bold' } },
           -- Float
           NormalFloat = { bg = c.none },
           FloatBorder = { bg = c.none },
