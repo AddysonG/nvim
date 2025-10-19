@@ -2,6 +2,7 @@ return {
   'catppuccin/nvim',
   name = 'catppuccin',
   config = function()
+    local blend = require('catppuccin.utils.colors').blend
     require("catppuccin").setup({
       flavour = "auto", -- latte, frappe, macchiato, mocha
       background = { -- :h background
@@ -66,13 +67,21 @@ return {
           BlinkCmpSignatureHelpBorder = menu_bg,
           -- Diagnostic sign
           DiagnosticSignError = { fg = c.red },
-          DiagnosticSignWarn = { fg = c.yellow },
-          DiagnosticSignInfo = { fg = c.sky },
-          DiagnosticSignHint = { fg = c.teal },
+          DiagnosticSignWarn  = { fg = c.yellow },
+          DiagnosticSignInfo  = { fg = c.sky },
+          DiagnosticSignHint  = { fg = c.teal },
           -- Breakpoint sign
-          DapBreakpointSign = { fg = c.red },
+          DapBreakpointSign          = { fg = c.red },
           DapBreakpointConditionSign = { fg = c.yellow },
-          DapBreakpointRejectedSign = { fg = c.red },
+          DapBreakpointRejectedSign  = { fg = c.red },
+          -- Rainbow delimiters
+          RainbowDelimiterRed     = { fg = blend(c.red, c.text, 0.5) },
+          RainbowDelimiterYellow  = { fg = blend(c.yellow, c.text, 0.5) },
+          RainbowDelimiterBlue    = { fg = blend(c.blue, c.text, 0.5) },
+          RainbowDelimiterOrange  = { fg = blend(c.peach, c.text, 0.5) },
+          RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.5) },
+          RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.5) },
+          RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.5) },
         }
       end,
       default_integrations = true,
@@ -80,6 +89,7 @@ return {
         cmp = true,
         gitsigns = true,
         nvimtree = true,
+        rainbow_delimiters = true,
         treesitter = true,
         notify = false,
         mini = {
@@ -94,6 +104,11 @@ return {
             warnings = { 'italic' },
             information = { 'italic' },
             ok = { 'italic' },
+          },
+          indent_blankline = {
+            enabled = true,
+            scope_color = '',
+            colored_indent_levels = false,
           },
           inlay_hints = { background = true },
         },

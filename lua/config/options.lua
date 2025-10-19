@@ -18,6 +18,7 @@ vim.opt.cursorline = true       -- Highlight current line
 
 vim.opt.scrolloff = 4           -- Scrolloff
 vim.opt.wrap = false            -- Turn off line wrapping
+vim.opt.linebreak = true        -- wrap at word instead of character
 
 vim.opt.tabstop = 4             -- Visual size of tabs
 vim.opt.softtabstop = 4         -- Tab size using tab key
