@@ -14,13 +14,20 @@ return {
         defaults = {
           layout_config = {
             horizontal = {
-              height = 0.85,
-              preview_cutoff = 100,
+              width = { 0.95, max = 120 },
+              height = { 0.9, max = 36 },
+              preview_cutoff = 80,
+              preview_width = 0.5,
               prompt_position = 'bottom',
-              width = 0.85
             }
           },
           border = true,
+          borderchars = {
+            '─', '│', '─', '│', '┌', '┐', '┘', '└'
+          },
+          selection_caret = "→ ",
+          entry_prefix = "  ",
+          prompt_prefix = ' ',
         },
         pickers = {
           find_files = { follow = true },

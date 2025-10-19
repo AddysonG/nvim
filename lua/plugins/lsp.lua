@@ -79,9 +79,22 @@ return {
       inlay_hints = { enabled = true },
     },
     config = function()
+      -- Diagnostics
+
       vim.diagnostic.config({
-        float = { border = 'rounded' },
+        float = { border = 'single' },
       })
+
+      -- LSP float borders
+
+      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      --   vim.lsp.handlers.hover,
+      --   { border = "single" }
+      -- )
+      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      --   vim.lsp.handlers.signature_help,
+      --   { border = "single" }
+      -- )
       vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, cfg)
         cfg = cfg or {}
         cfg.border = "rounded"
@@ -89,15 +102,16 @@ return {
       end
       vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, cfg)
         cfg = cfg or {}
-        cfg.border = 'rounded'
+        cfg.border = "rounded"
         return vim.lsp.handlers.signature_help(_, result, ctx, cfg)
       end
-
       -- Keymaps
+
       local builtin = require('telescope.builtin')
 
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP hover' })
       vim.keymap.set('n', 'K', function()
-        vim.lsp.buf.hover({ border = 'rounded' })
+        vim.lsp.buf.hover({ border = 'single' })
       end, { desc = 'LSP hover' })
       vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Goto references' })
       vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = 'Goto implementation' })
@@ -105,9 +119,7 @@ return {
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration' })
       vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, { desc = 'LSP rename' })
       vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, { desc = 'Code action' })
-      vim.keymap.set('n', '<leader>e', function()
-        vim.diagnostic.open_float({ border = 'rounded' })
-      end, { desc = 'Show code diagnostic (errors)' })
+      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show code diagnostic (errors)' })
     end
   },
 }

@@ -55,7 +55,7 @@ return {
           --Normal = { fg = c.text, bg = c.base }, -- normal text
           -- "Gutter"
           LineNr = { fg = c.overlay0 },
-          CursorLineNr = { fg = c.blue, style = { 'bold' } },
+          CursorLineNr = { fg = c.text },
           -- Popup menu
           Pmenu = menu_bg,
           PmenuSel = { bg = c.surface1, style = { 'bold' } },
@@ -82,6 +82,25 @@ return {
           RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.5) },
           RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.5) },
           RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.5) },
+          -- Float
+          NormalFloat = { bg = c.none },
+          FloatBorder = { bg = c.none },
+          -- Telescope
+          TelescopeSelection = { fg = c.text, bg = c.surface0, bold = true },
+          -- Telescope prompt
+          TelescopePromptBorder = { fg = c.pink },
+          TelescopePromptTitle = { bg = c.pink, fg = c.mantle, bold = true },
+          TelescopePromptPrefix = { fg = c.pink },
+          TelescopePromptNormal = { bg = c.none },
+          TelescopePromptCounter = { fg = c.pink },
+          -- Telescope title
+          TelescopeResultsBorder = { fg = c.blue },
+          TelescopeResultsTitle = { bg = c.blue, fg = c.mantle, bold = true },
+          TelescopeSelectionCaret = { fg = c.blue },
+          TelescopeMatching = { fg = c.blue },
+          -- Telescope preview
+          TelescopePreviewBorder = { fg = c.green },
+          TelescopePreviewTitle = { bg = c.green, fg = c.mantle, bold = true },
         }
       end,
       default_integrations = true,
