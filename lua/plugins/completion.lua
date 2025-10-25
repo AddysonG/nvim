@@ -17,7 +17,21 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
-      documentation = { auto_show = true },
+      trigger = {
+        show_on_keyword = false,
+        show_on_insert = false,
+        show_on_trigger_character = false,
+        show_on_accept_on_trigger_character = false,
+        show_on_insert_on_trigger_character = false,
+      },
+      menu = {
+        auto_show = false,
+        border = 'none',
+      },
+      documentation = {
+        auto_show = true,
+        window = { border = 'none' }
+      },
       list = {
         selection = {
           -- When true, automatically select the first item in completion list
@@ -44,6 +58,15 @@ return {
     -- See the fuzzy documentation for more information
     fuzzy = { implementation = "prefer_rust_with_warning" },
 
-    signature = { enabled = true }
+    signature = {
+      enabled = true,
+      trigger = {
+        show_on_keyword = false,
+        show_on_insert = false,
+        show_on_trigger_character = false,
+        show_on_accept_on_trigger_character = false,
+        show_on_insert_on_trigger_character = false,
+      },
+    },
   },
 }

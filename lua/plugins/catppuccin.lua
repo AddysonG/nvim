@@ -55,8 +55,8 @@ return {
           -- Base color
           --Normal = { fg = c.text, bg = c.base }, -- normal text
           -- "Gutter"
-          LineNr = { fg = c.overlay0 },
-          CursorLineNr = { fg = c.text },
+          LineNr = { fg = c.surface2 },
+          CursorLineNr = { fg = c.lavender },
           -- Popup menu
           Pmenu = menu_bg,
           PmenuSel = { bg = c.surface1, style = { 'bold' } },
@@ -76,13 +76,13 @@ return {
           DapBreakpointConditionSign = { fg = c.yellow },
           DapBreakpointRejectedSign  = { fg = c.red },
           -- Rainbow delimiters
-          RainbowDelimiterRed     = { fg = blend(c.red, c.text, 0.7) },
-          RainbowDelimiterYellow  = { fg = blend(c.yellow, c.text, 0.7) },
-          RainbowDelimiterBlue    = { fg = blend(c.blue, c.text, 0.7) },
-          RainbowDelimiterOrange  = { fg = blend(c.peach, c.text, 0.7) },
-          RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.7) },
-          RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.7) },
-          RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.7) },
+          -- RainbowDelimiterRed     = { fg = blend(c.red, c.text, 0.7) },
+          -- RainbowDelimiterYellow  = { fg = blend(c.yellow, c.text, 0.7) },
+          -- RainbowDelimiterBlue    = { fg = blend(c.blue, c.text, 0.7) },
+          -- RainbowDelimiterOrange  = { fg = blend(c.peach, c.text, 0.7) },
+          -- RainbowDelimiterGreen   = { fg = blend(c.green, c.text, 0.7) },
+          -- RainbowDelimiterViolet  = { fg = blend(c.mauve, c.text, 0.7) },
+          -- RainbowDelimiterCyan    = { fg = blend(c.sky, c.text, 0.7) },
           MatchParen = { fg = c.none, bg = c.surface1, style = { 'bold' } },
           -- Float
           NormalFloat = { bg = c.none },
@@ -91,18 +91,18 @@ return {
           TelescopeSelection = { fg = c.text, bg = c.surface0, bold = true },
           -- Telescope prompt
           TelescopePromptBorder = { fg = c.pink },
-          TelescopePromptTitle = { bg = c.pink, fg = c.mantle, bold = true },
+          TelescopePromptTitle = { bg = c.none, fg = c.pink, bold = true },
           TelescopePromptPrefix = { fg = c.pink },
           TelescopePromptNormal = { bg = c.none },
           TelescopePromptCounter = { fg = c.pink },
           -- Telescope title
           TelescopeResultsBorder = { fg = c.blue },
-          TelescopeResultsTitle = { bg = c.blue, fg = c.mantle, bold = true },
+          TelescopeResultsTitle = { bg = c.none, fg = c.blue, bold = true },
           TelescopeSelectionCaret = { fg = c.blue },
           TelescopeMatching = { fg = c.blue },
           -- Telescope preview
           TelescopePreviewBorder = { fg = c.green },
-          TelescopePreviewTitle = { bg = c.green, fg = c.mantle, bold = true },
+          TelescopePreviewTitle = { bg = c.none, fg = c.green, bold = true },
         }
       end,
       default_integrations = true,
@@ -112,7 +112,7 @@ return {
         nvimtree = true,
         rainbow_delimiters = true,
         treesitter = true,
-        notify = false,
+        notify = true,
         mini = {
           enabled = true,
           indentscope_color = "",

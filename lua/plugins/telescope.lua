@@ -27,7 +27,7 @@ return {
           },
           selection_caret = "→ ",
           entry_prefix = "  ",
-          prompt_prefix = ' ',
+          prompt_prefix = '> ',
         },
         pickers = {
           find_files = { follow = true },
@@ -46,7 +46,7 @@ return {
       vim.keymap.set('n', '<Leader>sh', builtin.help_tags, { desc = 'Search help tags' })
       vim.keymap.set('n', '<Leader>sm', builtin.marks, { desc = 'Search marks' })
       vim.keymap.set('n', '<Leader>sk', builtin.keymaps, { desc = 'Search keymaps' })
-      vim.keymap.set('n', '<Leader>v', builtin.git_status, { desc = 'Telescope git status' })
+      vim.keymap.set('n', '<Leader>sc', builtin.git_status, { desc = 'Telescope git status' })
 
       -- Search with "hidden" files included
 

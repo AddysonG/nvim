@@ -14,6 +14,9 @@ vim.diagnostic.config({
   },
 
   -- Show first diagnostic information at end of line
-  virtual_text = { spacing = 2 },
+  virtual_text = {
+    spacing = 2,
+    current_line = false,
+  },
 })
 

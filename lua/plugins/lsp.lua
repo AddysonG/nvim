@@ -1,5 +1,12 @@
 return {
-  { 'mason-org/mason.nvim', opts = {} },
+  { 'mason-org/mason.nvim',
+    opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
+    },
+  },
   {
     'mason-org/mason-lspconfig.nvim',
     dependencies = {
@@ -25,13 +32,38 @@ return {
       local mason_lspconfig = require('mason-lspconfig')
       mason_lspconfig.setup(opts)
 
+      -- Update capabilities to use include blink
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      -- Make LSP configs include blink capabilities by default
-      for _, name in ipairs({ 'cssls', 'html', 'lua_ls', 'ts_ls' }) do
-        vim.lsp.config(name, {capabilities = capabilities })
-      end
+      --- Individual language server config below ---
 
+      -- C/C++
+      vim.lsp.config('clangd', {
+        capabilities = capabilities,
+        cmd = { 'clangd', '--background-index', '--clang-tidy=false' },
+        init_options = {
+          clangdFileStatus = true,
+        },
+      })
+      -- C#
+      vim.lsp.config("roslyn", {
+        settings = {
+          ["csharp|inlay_hints"] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = false,
+            csharp_enable_inlay_hints_for_implicit_variable_types = false,
+          },
+          ["csharp|code_lens"] = {
+            dotnet_enable_references_code_lens = false,
+            dotnet_enable_tests_code_lens = false,
+          },
+          ["csharp|code_style"] = {
+
+          }
+        },
+      })
+      -- CSS
+      vim.lsp.config('cssls', { capabilities = capabilities })
+      -- Go
       vim.lsp.config('gopls', {
         capabilities = capabilities,
         settings = {
@@ -50,7 +82,20 @@ return {
           }
         }
       })
-
+      -- HTML
+      vim.lsp.config('html', { capabilities = capabilities })
+      -- Javascript/Typescript
+      vim.lsp.config('ts_ls', { capabilities = capabilities })
+      -- Lua
+      vim.lsp.config('lua_ls', {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            format = { enable = false }
+          },
+        },
+      })
+      -- Python
       vim.lsp.config('pyright', {
         capabilities = capabilities,
         settings = {
@@ -58,14 +103,6 @@ return {
             pythonPath = require('helpers.python').get_python_path(),
           }
         }
-      })
-
-      vim.lsp.config('clangd', {
-        capabilities = capabilities,
-        cmd = { 'clangd', '--background-index', '--clang-tidy=false' },
-        init_options = {
-          clangdFileStatus = true,
-        },
       })
     end
   },
@@ -85,26 +122,6 @@ return {
         float = { border = 'single' },
       })
 
-      -- LSP float borders
-
-      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-      --   vim.lsp.handlers.hover,
-      --   { border = "single" }
-      -- )
-      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-      --   vim.lsp.handlers.signature_help,
-      --   { border = "single" }
-      -- )
-      vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, cfg)
-        cfg = cfg or {}
-        cfg.border = "rounded"
-        return vim.lsp.handlers.hover(_, result, ctx, cfg)
-      end
-      vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, cfg)
-        cfg = cfg or {}
-        cfg.border = "rounded"
-        return vim.lsp.handlers.signature_help(_, result, ctx, cfg)
-      end
       -- Keymaps
 
       local builtin = require('telescope.builtin')
