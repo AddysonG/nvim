@@ -8,10 +8,14 @@ return {
       render = 'wrapped-compact',
       stages = 'static',
       on_open = function(win)
-        vim.api.nvim_win_set_config(win, { border = 'double' })
+        vim.api.nvim_win_set_config(win, { border = 'single' })
       end
     })
 
+    local _notify = notify
+    notify = function(msg, level, opts)
+      --if type(msg) == 'string'
+    end
     vim.notify = notify
 
     local telescope = require('telescope')

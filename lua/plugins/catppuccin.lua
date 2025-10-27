@@ -2,7 +2,13 @@ return {
   'catppuccin/nvim',
   name = 'catppuccin',
   config = function()
-    local blend = require('catppuccin.utils.colors').blend
+    local utils = require("catppuccin.utils.colors")
+    local colors = require("catppuccin.palettes").get_palette()
+    local cursorline_bg  = utils.vary_color(
+      { latte = utils.lighten(colors.mantle, 0.70, colors.base) },
+      utils.darken(colors.surface0, 0.64, colors.base)
+    )
+
     require("catppuccin").setup({
       flavour = "auto", -- latte, frappe, macchiato, mocha
       background = { -- :h background
@@ -87,22 +93,23 @@ return {
           -- Float
           NormalFloat = { bg = c.none },
           FloatBorder = { bg = c.none },
-          -- Telescope
-          TelescopeSelection = { fg = c.text, bg = c.surface0, bold = true },
           -- Telescope prompt
-          TelescopePromptBorder = { fg = c.pink },
-          TelescopePromptTitle = { bg = c.none, fg = c.pink, bold = true },
-          TelescopePromptPrefix = { fg = c.pink },
-          TelescopePromptNormal = { bg = c.none },
-          TelescopePromptCounter = { fg = c.pink },
-          -- Telescope title
-          TelescopeResultsBorder = { fg = c.blue },
-          TelescopeResultsTitle = { bg = c.none, fg = c.blue, bold = true },
+          TelescopePromptNormal = { bg = cursorline_bg },
+          TelescopePromptPrefix = { fg = c.mauve },
+          TelescopePromptCounter = { bg = cursorline_bg, fg = c.mauve },
+          TelescopePromptTitle = { bg = c.mauve, fg = c.mantle, bold = true },
+          TelescopePromptBorder = { bg = cursorline_bg, fg = cursorline_bg },
+          -- Telescope results
+          TelescopeResultsNormal = { bg = c.mantle },
+          TelescopeResultsTitle = { bg = c.blue, fg = c.mantle, bold = true },
+          TelescopeResultsBorder = { bg = c.mantle, fg = c.mantle },
+          TelescopeSelection = { bg = c.surface0, fg = c.blue, bold = true },
           TelescopeSelectionCaret = { fg = c.blue },
           TelescopeMatching = { fg = c.blue },
           -- Telescope preview
-          TelescopePreviewBorder = { fg = c.green },
-          TelescopePreviewTitle = { bg = c.none, fg = c.green, bold = true },
+          TelescopePreviewNormal = { bg = c.mantle },
+          TelescopePreviewTitle = { bg = c.green, fg = c.mantle, bold = true },
+          TelescopePreviewBorder = { bg = c.mantle, fg = c.green },
         }
       end,
       default_integrations = true,

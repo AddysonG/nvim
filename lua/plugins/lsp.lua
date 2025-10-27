@@ -122,21 +122,12 @@ return {
         float = { border = 'single' },
       })
 
-      -- Keymaps
-
-      local builtin = require('telescope.builtin')
+      --- Keymaps ---
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP hover' })
       vim.keymap.set('n', 'K', function()
         vim.lsp.buf.hover({ border = 'single' })
       end, { desc = 'LSP hover' })
-      vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Goto references' })
-      vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = 'Goto implementation' })
-      vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Goto definition' })
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration' })
-      vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, { desc = 'LSP rename' })
-      vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, { desc = 'Code action' })
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show code diagnostic (errors)' })
     end
   },
 }

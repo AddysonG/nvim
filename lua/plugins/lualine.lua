@@ -4,26 +4,20 @@
 
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'stevearc/oil.nvim' },
+  dependencies = {
+    'stevearc/oil.nvim',
+    'catppuccin/nvim',
+  },
   config = function()
-    local filename_or_path = {
-      {
-        function()
-          local path = vim.fn.fnamemodify(require('oil').get_current_dir(), ':~:.')
-          return (path == '' and '.' or path)
-        end,
-        cond = function() return vim.bo.filetype == 'oil' end,
-      },
-      {
-        'filename',
-        cond = function() return vim.bo.filetype ~= 'oil' end,
-      },
-    }
+    local colors = require("catppuccin.palettes").get_palette()
+    local custom_theme = require("lualine.themes.catppuccin")
+    custom_theme.normal.c.bg = colors.mantle
+
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = 'auto',
-        component_separators = { left = '|', right = '|'},
+        theme = custom_theme,
+        component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
@@ -43,17 +37,27 @@ return {
         lualine_a = {
           { 'mode', color = { gui = 'bold' } }
         },
-        lualine_b = filename_or_path,
-        lualine_c = {'diagnostics'},
-        lualine_x = {'branch', 'diff'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'},
+        lualine_b = {
+          {
+            'filename',
+            file_status = true,
+            newfile_status = true,
+            symbols = {
+              modified = '+',
+              readonly = '[r]',
+            }
+          }
+        },
+        lualine_c = { 'branch', 'diff' },
+        lualine_x = { 'diagnostics', 'lsp_status' },
+        lualine_y = { 'filetype' },
+        lualine_z = { 'location', 'progress' },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = filename_or_path,
-        lualine_x = {'location'},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
         lualine_y = {},
         lualine_z = {}
       },
