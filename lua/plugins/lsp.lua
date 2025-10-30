@@ -47,6 +47,16 @@ return {
       })
       -- C#
       vim.lsp.config("roslyn", {
+        on_attach = function(client, _)
+          -- workaround to sanitize progress with nil value
+          local orig = client.handlers["$/progress"] or vim.lsp.handlers["$/progress"]
+          client.handlers["$/progress"] = function(err, result, ctx, cfg)
+            if result ~= nil and result.value == nil then
+              result.value = {}
+            end
+            if orig then return orig(err, result, ctx, cfg) end
+          end
+        end,
         settings = {
           ["csharp|inlay_hints"] = {
             csharp_enable_inlay_hints_for_implicit_object_creation = false,
@@ -56,9 +66,7 @@ return {
             dotnet_enable_references_code_lens = false,
             dotnet_enable_tests_code_lens = false,
           },
-          ["csharp|code_style"] = {
-
-          }
+          ["csharp|code_style"] = {},
         },
       })
       -- CSS
