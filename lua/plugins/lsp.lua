@@ -51,8 +51,14 @@ return {
           -- workaround to sanitize progress with nil value
           local orig = client.handlers["$/progress"] or vim.lsp.handlers["$/progress"]
           client.handlers["$/progress"] = function(err, result, ctx, cfg)
-            if result ~= nil and result.value == nil then
-              result.value = {}
+            if result ~= nil then
+              if result.value == nil then
+                -- ensure a dict-shaped minimal payload (not an empty list-like table)
+                result.value = { kind = "report", message = "", percentage = 0 }
+              elseif type(result.value) == "table" and next(result.value) == nil then
+                -- coerce {} to an empty *dict* so API encoding won't fail
+                result.value = vim.empty_dict()
+              end
             end
             if orig then return orig(err, result, ctx, cfg) end
           end
