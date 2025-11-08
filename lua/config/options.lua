@@ -20,9 +20,9 @@ vim.opt.scrolloff = 4           -- Scrolloff
 vim.opt.wrap = false            -- Turn off line wrapping
 vim.opt.linebreak = true        -- wrap at word instead of character
 
-vim.opt.tabstop = 4             -- Visual size of tabs
-vim.opt.softtabstop = 4         -- Tab size using tab key
-vim.opt.shiftwidth = 4          -- Tab size using vim motions
+vim.opt.tabstop = 4             -- Visual size of tab characters
+vim.opt.softtabstop = 4         -- Tab size using tab key (spaces)
+vim.opt.shiftwidth = 4          -- Tab size using vim motions >, <, and = (spaces)
 vim.opt.expandtab = true
 
 vim.opt.colorcolumn = '80'      -- Color column
