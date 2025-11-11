@@ -30,6 +30,7 @@ return {
         'luadoc',
         'markdown',
         'markdown_inline',
+        'prolog',
         'python',
         'sql',
         'toml',
@@ -41,6 +42,7 @@ return {
     })
 
     vim.filetype.add({ extension = { l = "lisp" } })
+    vim.filetype.add({ extension = { pl = "prolog" } })
 
     vim.filetype.add({
       pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
