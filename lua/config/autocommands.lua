@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'markdown' },
   group = vim.api.nvim_create_augroup('MarkdownWrap', { clear = true }),
   callback = function()
-    vim.wo.wrap = true
+    vim.opt_local.wrap = true
   end
 })
 
@@ -81,5 +81,19 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.listchars = listchars
 
     vim.opt_local.expandtab = false
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function(args)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(client)
+        -- Only use gopls for formatting
+        return client.name == "gopls"
+      end,
+    })
   end,
 })
