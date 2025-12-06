@@ -12,6 +12,10 @@ return {
     config = function()
       require('telescope').setup({
         defaults = {
+          -- force using forward slashes for paths on Windows
+          path_display = function(_, path)
+            return path:gsub("\\", "/")
+          end,
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {
