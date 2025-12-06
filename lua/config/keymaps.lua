@@ -32,7 +32,7 @@ vim.keymap.set('n', '<leader>P', '"+P', { desc = 'Put from clipboard (before)  "
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Reset horizontal scroll
-vim.keymap.set('n', '<leader>_', '999zH', { desc = 'Reset horizontal scroll'})
+vim.keymap.set('n', '<leader>0', '999zH', { desc = 'Reset horizontal scroll'})
 
 -- Setting indentation for current buffer
 vim.keymap.set('n', '<leader>ic', function()

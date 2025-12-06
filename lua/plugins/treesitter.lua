@@ -38,7 +38,10 @@ return {
         'xml',
       },
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = { "c", "cpp", "java", "javascript", "typescript", "c_sharp" },
+      },
     })
 
     vim.filetype.add({ extension = { l = "lisp" } })

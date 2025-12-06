@@ -40,7 +40,8 @@ return {
       -- C/C++
       vim.lsp.config('clangd', {
         capabilities = capabilities,
-        cmd = { 'clangd', '--background-index', '--clang-tidy=false' },
+        cmd = { 'clangd', '--background-index', '--clang-tidy=false', '--enable-config' },
+        root_markers = { '.clangd', 'compile_commands.json', '.git' },
         init_options = {
           clangdFileStatus = true,
         },
