@@ -51,7 +51,14 @@ return {
     sources = {
       -- default = { 'lsp', 'path', 'snippets', 'buffer' },
       -- Removing buffer excludes previously typed words from completion
-      default = { 'lsp', 'path', 'snippets' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets' },
+      providers = {
+        lazydev = {
+          name = 'LazyDev',
+          module = 'lazydev.integrations.blink',
+          score_offset = 100,
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

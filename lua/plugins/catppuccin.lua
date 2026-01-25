@@ -73,7 +73,10 @@ return {
     default_integrations = true,
     integrations = {
       cmp = true,
-      gitsigns = true,
+      gitsigns = {
+        enabled = true,
+        transparent = true,
+      },
       nvimtree = true,
       rainbow_delimiters = true,
       treesitter = true,

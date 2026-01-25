@@ -4,6 +4,10 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+vim.keymap.set('n', '<C-f>', '<Nop>', { silent = true })
+
+vim.keymap.set('n', '<C-f>n', ':Ex<CR>')
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Dehighlight search' })
 
 -- Center cursor on screen when using ctrl+u and ctrl+d

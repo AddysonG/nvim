@@ -31,6 +31,6 @@ return {
       hijack_netrw = false,
     })
 
-    vim.keymap.set('n', '<C-f>', require('nvim-tree.api').tree.toggle, { desc = 'Open filetree'})
+    vim.keymap.set('n', '<C-f>e', require('nvim-tree.api').tree.toggle, { desc = 'Open filetree'})
   end,
 }

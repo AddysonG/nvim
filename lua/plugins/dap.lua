@@ -64,9 +64,9 @@ return {
     'igorlfs/nvim-dap-view',
     opts = {
       windows = {
-        height = 0.3,
+        size = 0.3,
         terminal = {
-          width = 0.5,
+          size = 0.5,
           position = "right",
         },
       },
