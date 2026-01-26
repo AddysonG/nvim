@@ -2,8 +2,9 @@ return {
   'catppuccin/nvim',
   name = 'catppuccin',
   opts = {
-    transparent_background = true,
     flavour = 'mocha',
+    transparent_background = true,
+    show_end_of_buffer = false,
     custom_highlights = function(c)
       local menu_bg = { bg = c.surface0 }
       -- grab the cursorline color
@@ -12,7 +13,13 @@ return {
         { latte = U.lighten(c.mantle, 0.70, c.base) },
         U.darken(c.surface0, 0.64, c.base)
       )
+      local gutter_bg = c.mantle
       return {
+        -- Use different background color for line numbers and sign column
+        LineNr = { bg = gutter_bg },
+        CursorLineNr = { bg = gutter_bg },
+        SignColumn = { bg = gutter_bg },
+
         Visual = { style = { } },
         ColorColumn = { link = 'CursorLine' },
         -- Spell
