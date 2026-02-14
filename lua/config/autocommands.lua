@@ -10,6 +10,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Use tabs as indent for specific file types',
+  pattern = { 'sh' },
+  group = vim.api.nvim_create_augroup('TabIndent', { clear = true }),
+  callback = function()
+    local listchars = vim.opt.listchars:get()
+    listchars.tab = '  '
+    vim.opt_local.listchars = listchars
+    vim.opt_local.expandtab = false
+  end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
   desc = 'Set reduced indent size for certain filetypes',
   pattern = { 'html' },
   group = vim.api.nvim_create_augroup('ReduceIndent', { clear = true }),

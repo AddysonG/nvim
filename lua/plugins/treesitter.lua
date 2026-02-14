@@ -15,6 +15,7 @@ return {
       'csv',
       'diff',
       'dockerfile',
+      'elixir',
       'gitignore',
       'go',
       'gomod',
@@ -38,7 +39,7 @@ return {
       'xml',
     },
     highlight = { enable = true },
-    indent = { enable = false },
+    indent = { enable = { 'elixir' } },
   },
   config = function(_, opts)
     vim.filetype.add({

@@ -2,6 +2,7 @@ return {
   'catppuccin/nvim',
   name = 'catppuccin',
   opts = {
+
     flavour = 'mocha',
     transparent_background = true,
     show_end_of_buffer = false,
@@ -15,6 +16,11 @@ return {
       )
       local gutter_bg = c.mantle
       return {
+        Whitespace = { fg = c.surface1 },
+        SpecialKey = { fg = c.surface1 },
+        IblIndent = { fg = c.surface1 },
+
+        WinSeparator = { fg = c.mantle, bg = c.mantle },
         -- Use different background color for line numbers and sign column
         LineNr = { bg = gutter_bg },
         CursorLineNr = { bg = gutter_bg },
@@ -75,6 +81,10 @@ return {
         TelescopePreviewNormal = { bg = c.mantle },
         TelescopePreviewTitle = { bg = c.green, fg = c.mantle, bold = true },
         TelescopePreviewBorder = { bg = c.mantle, fg = c.green },
+        -- Nvim tree
+        NvimTreeNormal = { bg = c.mantle },
+        NvimTreeNormalNC = { bg = c.mantle },
+        NvimTreeNormalEndOfBuffer = { fg = c.mantle, bg = c.mantle },
       }
     end,
     default_integrations = true,

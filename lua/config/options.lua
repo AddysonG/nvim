@@ -34,8 +34,6 @@ vim.opt.spelloptions = 'camel'
 -- Disable tab line at top of screen in Windows
 vim.opt.showtabline = 0
 
-vim.opt.fillchars:append('eob: ')
-
 vim.opt.list = true
 vim.opt.listchars = {
   tab = '→ ',

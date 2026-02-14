@@ -27,6 +27,9 @@ return {
       -- CSS
       vim.lsp.enable('cssls')
 
+      -- Elixir
+      vim.lsp.enable('expert')
+
       -- Go
       vim.lsp.enable('gopls')
 
