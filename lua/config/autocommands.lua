@@ -33,20 +33,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  pattern = '*.lua',
-  callback = function(args)
-    local path = vim.fn.fnamemodify(args.file, ':p')
-    if path:find('/.config/nvim/') then
-      local bo = vim.bo[args.buf]
-      bo.tabstop = 2
-      bo.softtabstop = 2
-      bo.shiftwidth = 2
-    end
-  end,
-  desc = 'Set 2-space indent for Neovim config files',
-})
-
 -- Only highlight cursor row and color column for active window
 vim.api.nvim_create_autocmd('WinEnter', {
   callback = function()
@@ -74,21 +60,6 @@ vim.api.nvim_create_autocmd('FileType', {
     local listchars = vim.opt.listchars:get()
     listchars.tab = '  '
     vim.opt_local.listchars = listchars
-    vim.opt_local.expandtab = false
-  end,
-})
--- Autoformat Go files
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function(args)
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(client)
-        -- Only use gopls for formatting
-        return client.name == 'gopls'
-      end,
-    })
   end,
 })
 

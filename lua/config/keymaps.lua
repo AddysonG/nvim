@@ -35,7 +35,7 @@ vim.keymap.set('n', '<leader>P', '"+P', { desc = 'Put from clipboard (before)  "
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Reset horizontal scroll
-vim.keymap.set('n', '<leader>0', '999zH', { desc = 'Reset horizontal scroll'})
+vim.keymap.set('n', '<leader>0', '999zH', { desc = 'Reset horizontal scroll' })
 
 -- Setting indentation for current buffer
 vim.keymap.set('n', '<leader>i2', function()
@@ -55,3 +55,15 @@ vim.keymap.set('n', '<leader>i8', function()
   vim.bo.softtabstop = 8
   vim.bo.shiftwidth = 8
 end, { desc = 'Switch indent to 8 characters' })
+
+vim.keymap.set('n', '<leader>rs', function()
+  vim.opt.colorcolumn = '80'
+end, { desc = 'Show colorcolumn' })
+
+vim.keymap.set('n', '<leader>re', function()
+  vim.opt.colorcolumn = '120'
+end, { desc = 'Show expanded colorcolumn' })
+
+vim.keymap.set('n', '<leader>rh', function()
+  vim.opt.colorcolumn = ''
+end, { desc = 'Hide colorcolumn' })
