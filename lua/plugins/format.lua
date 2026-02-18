@@ -5,6 +5,7 @@ return {
       elixir = { lsp_format = 'prefer' },
       go = { 'gofmt' },
       lua = { 'stylua' },
+      python = { 'black' },
     },
     format_on_save = {
       timeout_ms = 2000,
