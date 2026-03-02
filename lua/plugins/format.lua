@@ -11,5 +11,6 @@ return {
       timeout_ms = 2000,
       lsp_format = 'fallback',
     },
+    notify_no_formatters = false,
   },
 }
