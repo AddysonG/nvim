@@ -22,6 +22,7 @@ return {
       'gosum',
       'gowork',
       'html',
+      'heex',
       'hyprlang',
       'java',
       'javadoc',
@@ -39,7 +40,7 @@ return {
       'xml',
     },
     highlight = { enable = true },
-    indent = { enable = { 'elixir' } },
+    indent = { enable = { 'elixir', 'heex' } },
   },
   config = function(_, opts)
     vim.filetype.add({
