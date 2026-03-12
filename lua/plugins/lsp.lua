@@ -54,7 +54,19 @@ return {
           python = {
             pythonPath = require('utils.python').get_python_path()
           }
-        }
+        },
+        before_init = function(_, config)
+          if require('utils.python').has_pydantic() then
+            config.settings.python = vim.tbl_deep_extend("force", config.settings.python or {}, {
+              analysis = {
+                diagnosticSeverityOverrides = {
+                  reportAttributeAccessIssue = "none",
+                  reportIncompatibleVariableOverride = "none",
+                },
+              },
+            })
+          end
+        end
       })
       vim.lsp.enable('pyright')
     end

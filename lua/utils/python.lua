@@ -28,4 +28,10 @@ function M.get_python_path()
   return default_path
 end
 
+function M.has_pydantic()
+  local python = M.get_python_path()
+  vim.fn.system({ python, "-c", "import pydantic" })
+  return vim.v.shell_error == 0
+end
+
 return M
