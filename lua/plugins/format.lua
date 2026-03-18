@@ -2,7 +2,7 @@ return {
   'stevearc/conform.nvim',
   opts = {
     formatters_by_ft = {
-      elixir = { lsp_format = 'prefer' },
+      elixir = { 'mix', lsp_format = 'prefer' },
       go = { 'gofmt' },
       lua = { 'stylua' },
       python = { 'black' },
