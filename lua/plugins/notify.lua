@@ -5,7 +5,7 @@ return {
     render = 'wrapped-compact',
     stages = 'slide',
     on_open = function(win)
-      vim.api.nvim_win_set_config(win, { border = 'single' })
+      vim.api.nvim_win_set_config(win, { border = 'rounded' })
     end
   },
   config = function(_, opts)

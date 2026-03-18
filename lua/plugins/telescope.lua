@@ -1,6 +1,7 @@
 return {
   {
-    'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
+    'nvim-telescope/telescope.nvim',
+    tag = 'v0.2.0',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'echasnovski/mini.icons',
@@ -22,7 +23,6 @@ return {
           },
         },
         border = true,
-        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         selection_caret = '→ ',
         entry_prefix = '  ',
         prompt_prefix = ' ',
@@ -41,7 +41,7 @@ return {
       local builtin = require('telescope.builtin')
       -- LSP
       vim.keymap.set('n', 'grr', builtin.lsp_references, { desc = 'Goto references' })
-      vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'Goto implementations'})
+      vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'Goto implementations' })
       vim.keymap.set('n', 'grd', builtin.lsp_definitions, { desc = 'Goto definition' })
       vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, { desc = 'Goto declaration' })
       vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'LSP rename' })

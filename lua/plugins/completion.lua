@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets' },
   version = '1.*',
+  build = 'cargo build --release',
   opts = {
     -- All presets have the following mappings:
     --   C-space: Open menu or open docs if already open

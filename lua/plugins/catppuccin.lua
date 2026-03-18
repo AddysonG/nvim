@@ -7,84 +7,86 @@ return {
     transparent_background = true,
     show_end_of_buffer = false,
     custom_highlights = function(c)
-      local menu_bg = { bg = c.surface0 }
+      local menu_bg       = { bg = c.surface0 }
       -- grab the cursorline color
-      local U = require('catppuccin.utils.colors')
-      local cursorline_bg  = U.vary_color(
+      local U             = require('catppuccin.utils.colors')
+      local cursorline_bg = U.vary_color(
         { latte = U.lighten(c.mantle, 0.70, c.base) },
         U.darken(c.surface0, 0.64, c.base)
       )
-      local gutter_bg = c.mantle
+      local gutter_bg     = c.none
       return {
-        Whitespace = { fg = c.surface1 },
-        SpecialKey = { fg = c.surface1 },
-        IblIndent = { fg = c.surface1 },
+        Whitespace                  = { fg = c.surface1 },
+        SpecialKey                  = { fg = c.surface1 },
+        IblIndent                   = { fg = c.surface1 },
 
-        WinSeparator = { fg = c.mantle, bg = c.mantle },
+        WinBar                      = { fg = c.text, bg = c.none },
+        WinBarNC                    = { fg = c.surface1, bg = c.none },
         -- Use different background color for line numbers and sign column
-        LineNr = { bg = gutter_bg },
-        CursorLineNr = { bg = gutter_bg },
-        SignColumn = { bg = gutter_bg },
+        LineNr                      = { bg = gutter_bg },
+        CursorLineNr                = { fg = c.lavender, bg = c.surface0, style = { 'bold' } },
+        CursorLineSign              = { bg = c.surface0, style = { 'bold' } },
+        SignColumn                  = { bg = gutter_bg },
 
-        Visual = { style = { } },
-        ColorColumn = { link = 'CursorLine' },
+        Visual                      = { style = {} },
+        ColorColumn                 = { link = 'CursorLine' },
         -- Spell
-        SpellBad = { sp = c.blue, style = { 'undercurl' } },
-        SpellCap = { style = { } },
-        SpellLocal = { style = { } },
-        SpellRare = { style = { } },
+        SpellBad                    = { sp = c.blue, style = { 'undercurl' } },
+        SpellCap                    = { style = {} },
+        SpellLocal                  = { style = {} },
+        SpellRare                   = { style = {} },
         -- Diagnostic underlines
-        DiagnosticUnderlineError = { style = { 'undercurl' } },
-        DiagnosticUnderlineWarn = { style = { 'undercurl' } },
-        DiagnosticUnderlineInfo = { style = { 'undercurl' } },
-        DiagnosticUnderlineHint = { style = { 'undercurl' } },
+        DiagnosticUnderlineError    = { style = { 'undercurl' } },
+        DiagnosticUnderlineWarn     = { style = { 'undercurl' } },
+        DiagnosticUnderlineInfo     = { style = { 'undercurl' } },
+        DiagnosticUnderlineHint     = { style = { 'undercurl' } },
         -- Popup menu
-        Pmenu = menu_bg,
-        PmenuSel = { bg = c.surface1, style = { 'bold' } },
+        Pmenu                       = menu_bg,
+        PmenuSel                    = { bg = c.surface1, style = { 'bold' } },
         LspSignatureActiveParameter = { bg = c.surface1, style = { 'bold' } },
-        BlinkCmpDoc = menu_bg,
-        BlinkCmpDocBoarder = menu_bg,
-        BlinkCmpDocSeparator = menu_bg,
-        BlinkCmpSignatureHelp = menu_bg,
+        BlinkCmpDoc                 = menu_bg,
+        BlinkCmpDocBoarder          = menu_bg,
+        BlinkCmpDocSeparator        = menu_bg,
+        BlinkCmpSignatureHelp       = menu_bg,
         BlinkCmpSignatureHelpBorder = menu_bg,
         -- Diagnostic sign
-        DiagnosticSignError = { fg = c.red },
-        DiagnosticSignWarn  = { fg = c.yellow },
-        DiagnosticSignInfo  = { fg = c.sky },
-        DiagnosticSignHint  = { fg = c.teal },
+        DiagnosticSignError         = { fg = c.red },
+        DiagnosticSignWarn          = { fg = c.yellow },
+        DiagnosticSignInfo          = { fg = c.sky },
+        DiagnosticSignHint          = { fg = c.teal },
         -- Breakpoint sign
-        DapBreakpointSign          = { fg = c.red },
-        DapBreakpointConditionSign = { fg = c.yellow },
-        DapBreakpointRejectedSign  = { fg = c.red },
+        DapBreakpointSign           = { fg = c.red },
+        DapBreakpointConditionSign  = { fg = c.yellow },
+        DapBreakpointRejectedSign   = { fg = c.red },
         -- Debug line
-        DapStoppedSign = { fg = c.lavender },
-        DapStoppedLine = { bg = c.surface0 },
+        DapStoppedSign              = { fg = c.lavender },
+        DapStoppedLine              = { bg = c.surface0 },
         -- Matching parentheses
-        MatchParen = { fg = c.none, style = { 'bold' } },
+        MatchParen                  = { fg = c.none, style = { 'bold' } },
         -- Float
-        NormalFloat = { bg = c.none },
-        FloatBorder = { bg = c.none },
+        NormalFloat                 = { bg = c.none },
+        FloatBorder                 = { fg = c.overlay0, bg = c.none },
         -- Telescope prompt
-        TelescopePromptNormal = { bg = cursorline_bg },
-        TelescopePromptPrefix = { fg = c.mauve },
-        TelescopePromptCounter = { bg = cursorline_bg, fg = c.mauve },
-        TelescopePromptTitle = { bg = c.mauve, fg = c.mantle, bold = true },
-        TelescopePromptBorder = { bg = cursorline_bg, fg = cursorline_bg },
+        TelescopePromptNormal       = { bg = cursorline_bg },
+        TelescopePromptPrefix       = { fg = c.mauve },
+        TelescopePromptCounter      = { bg = cursorline_bg, fg = c.mauve },
+        TelescopePromptTitle        = { bg = c.mauve, fg = c.mantle, bold = true },
+        TelescopePromptBorder       = { bg = cursorline_bg, fg = cursorline_bg },
         -- Telescope results
-        TelescopeResultsNormal = { bg = c.mantle },
-        TelescopeResultsTitle = { bg = c.blue, fg = c.mantle, bold = true },
-        TelescopeResultsBorder = { bg = c.mantle, fg = c.mantle },
-        TelescopeSelection = { bg = c.surface0, fg = c.blue, bold = true },
-        TelescopeSelectionCaret = { fg = c.blue },
-        TelescopeMatching = { fg = c.blue },
+        TelescopeResultsNormal      = { bg = c.mantle },
+        TelescopeResultsTitle       = { bg = c.blue, fg = c.mantle, bold = true },
+        TelescopeResultsBorder      = { bg = c.mantle, fg = c.mantle },
+        TelescopeSelection          = { bg = c.surface0, fg = c.blue, bold = true },
+        TelescopeSelectionCaret     = { fg = c.blue },
+        TelescopeMatching           = { fg = c.blue },
         -- Telescope preview
-        TelescopePreviewNormal = { bg = c.mantle },
-        TelescopePreviewTitle = { bg = c.green, fg = c.mantle, bold = true },
-        TelescopePreviewBorder = { bg = c.mantle, fg = c.green },
+        TelescopePreviewNormal      = { bg = c.mantle },
+        TelescopePreviewTitle       = { bg = c.green, fg = c.mantle, bold = true },
+        TelescopePreviewBorder      = { bg = c.mantle, fg = c.green },
         -- Nvim tree
-        NvimTreeNormal = { bg = c.mantle },
-        NvimTreeNormalNC = { bg = c.mantle },
-        NvimTreeNormalEndOfBuffer = { fg = c.mantle, bg = c.mantle },
+        NvimTreeNormal              = { bg = c.mantle },
+        NvimTreeNormalNC            = { bg = c.mantle },
+        NvimTreeNormalEndOfBuffer   = { fg = c.mantle, bg = c.mantle },
       }
     end,
     default_integrations = true,
