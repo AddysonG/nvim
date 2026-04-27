@@ -1,6 +1,7 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   opts = {
+    nested = false,
     heading = {
       icons = { '', '', '', '', '', '' },
       position = 'eol',
@@ -9,9 +10,10 @@ return {
     },
     code = {
       sign = false,
-      conceal_delimiters = false,
       language_name = false,
       language_info = false,
+      width = 'block',
+      right_pad = 2,
       border = 'thick',
     },
     bullet = {

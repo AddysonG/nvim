@@ -31,6 +31,7 @@ return {
       'javadoc',
       'javascript',
       'json',
+      'latex',
       'lua',
       'luadoc',
       'markdown',
@@ -41,6 +42,7 @@ return {
       'toml',
       'vim',
       'xml',
+      'yaml',
     })
     vim.api.nvim_create_autocmd('FileType', {
       group = vim.api.nvim_create_augroup('TSHighlight', { clear = true }),
