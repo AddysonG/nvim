@@ -2,6 +2,8 @@ vim.opt.timeout = false
 
 vim.opt.termguicolors = true
 
+vim.opt.swapfile = false
+
 vim.opt.fixendofline = false -- Disable automatically adding newline to end of file
 
 vim.opt.number = true        -- Line numbering
