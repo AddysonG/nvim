@@ -39,7 +39,9 @@ return {
         DiagnosticUnderlineError    = { style = { 'undercurl' } },
         DiagnosticUnderlineWarn     = { style = { 'undercurl' } },
         DiagnosticUnderlineInfo     = { style = { 'undercurl' } },
-        DiagnosticUnderlineHint     = { style = { 'undercurl' } },
+        DiagnosticUnderlineHint     = { style = {} },
+        -- Keep unused code readable (sign/underline still show the diagnostic)
+        DiagnosticUnnecessary       = { style = {} },
         -- Popup menu
         Pmenu                       = menu_bg,
         PmenuSel                    = { bg = c.surface1, style = { 'bold' } },
@@ -98,6 +100,7 @@ return {
       },
       nvimtree = true,
       rainbow_delimiters = true,
+      render_markdown = true,
       treesitter = true,
       notify = true,
       mini = {
