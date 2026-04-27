@@ -1,10 +1,13 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  branch = 'master',
+  branch = 'main',
   lazy = false,
   build = ':TSUpdate',
-  opts = {
-    ensure_installed = {
+  config = function()
+    vim.filetype.add({
+      pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
+    })
+    require('nvim-treesitter').install({
       'bash',
       'c',
       'c_sharp',
@@ -38,14 +41,17 @@ return {
       'toml',
       'vim',
       'xml',
-    },
-    highlight = { enable = true },
-    indent = { enable = { 'elixir', 'heex' } },
-  },
-  config = function(_, opts)
-    vim.filetype.add({
-      pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
     })
-    require('nvim-treesitter.configs').setup(opts)
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('TSHighlight', { clear = true }),
+      callback = function() pcall(vim.treesitter.start) end,
+    })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('TSIndent', { clear = true }),
+      pattern = { 'elixir', 'heex', 'lua' },
+      callback = function()
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
   end,
 }

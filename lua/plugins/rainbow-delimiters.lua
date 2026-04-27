@@ -6,5 +6,8 @@ return {
       [''] = 'rainbow-delimiters',
       lua = 'rainbow-blocks'
     },
+    condition = function(bufnr)
+      return vim.bo[bufnr].buftype == ''
+    end,
   },
 }
