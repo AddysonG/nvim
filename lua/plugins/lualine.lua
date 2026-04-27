@@ -62,7 +62,7 @@ return {
         lualine_a = {
           { 'mode', color = { gui = 'bold' } }
         },
-        lualine_b = { 'diagnostics', 'lsp_status' },
+        lualine_b = { 'lsp_status', 'diagnostics' },
         lualine_c = {},
         lualine_x = {},
         lualine_y = { 'diff', { 'branch', fmt = function(s) return s:match('[^/]+$') or s end } },
