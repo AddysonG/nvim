@@ -4,8 +4,10 @@ return {
     formatters_by_ft = {
       elixir = { 'mix', lsp_format = 'prefer' },
       go = { 'gofmt' },
+      javascript = { 'prettier' },
       lua = { 'stylua' },
       python = { 'black' },
+      typescript = { 'prettier' },
     },
     format_on_save = {
       timeout_ms = 2000,

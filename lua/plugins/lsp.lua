@@ -54,6 +54,13 @@ return {
       vim.lsp.enable('jdtls')
 
       -- JavaScript/TypeScript
+      vim.lsp.config('ts_ls', {
+        settings = {
+          implicitProjectConfiguration = {
+            checkJs = true,
+          }
+        }
+      })
       vim.lsp.enable('ts_ls')
 
       -- Lua
