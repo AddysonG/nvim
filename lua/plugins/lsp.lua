@@ -63,6 +63,9 @@ return {
       })
       vim.lsp.enable('ts_ls')
 
+      -- JSON
+      vim.lsp.enable('jsonls')
+
       -- Lua
       vim.lsp.enable('lua_ls')
 
