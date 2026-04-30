@@ -1,10 +1,11 @@
+local colors = require('catppuccin.palettes').get_palette()
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
     'catppuccin/nvim',
   },
   config = function()
-    local custom_theme = require("lualine.themes.catppuccin-nvim")
+    local custom_theme = require('lualine.themes.catppuccin-nvim')
 
     local function file_icon()
       local ok, icons = pcall(require, 'mini.icons')
@@ -19,27 +20,40 @@ return {
       return hl
     end
 
+    local function position_icon() return '󰺾' end
     local function project_dir()
       return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
     end
 
     local winbar_components = {
       lualine_c = {
-        { file_icon, color = file_icon_color, padding = { left = 1, right = 0 } },
+        {
+          file_icon,
+          color = file_icon_color,
+          padding = { left = 1, right = 0 },
+        },
         {
           'filename',
           path = 1,
           file_status = true,
-          symbols = { modified = '+', readonly = '[r]' },
+          newfile_status = true,
+          symbols = {
+            modified = '󰲶 ',
+            readonly = ' ',
+            unnamed = '[Unnamed]',
+            newfile = ' ',
+          },
         },
-      },
-      lualine_x = {
-        { 'location', padding = { left = 1, right = 0 } },
-        'progress',
+        {
+          position_icon,
+          color = { fg = colors.yellow },
+        },
+        { 'location', color = { fg = colors.yellow }, padding = 0 },
+        { 'progress', color = { fg = colors.yellow } },
       },
     }
 
-    require('lualine').setup {
+    require('lualine').setup({
       options = {
         icons_enabled = true,
         theme = custom_theme,
@@ -56,22 +70,25 @@ return {
           statusline = 100,
           tabline = 100,
           winbar = 100,
-        }
+        },
       },
       sections = {
         lualine_a = {
-          { 'mode', color = { gui = 'bold' } }
+          { 'mode', color = { gui = 'bold' } },
         },
         lualine_b = { 'lsp_status', 'diagnostics' },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { 'diff', { 'branch', fmt = function(s) return s:match('[^/]+$') or s end } },
+        lualine_y = {
+          'diff',
+          { 'branch', fmt = function(s) return s:match('[^/]+$') or s end },
+        },
         lualine_z = { project_dir },
       },
       winbar = winbar_components,
       inactive_winbar = winbar_components,
       tabline = {},
       extensions = {},
-    }
-  end
+    })
+  end,
 }

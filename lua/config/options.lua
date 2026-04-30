@@ -28,7 +28,7 @@ vim.opt.softtabstop = 4    -- Tab size using tab key (spaces)
 vim.opt.shiftwidth = 4     -- Tab size using vim motions >, <, and = (spaces)
 vim.opt.expandtab = true
 
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = ''
 
 -- Spell
 vim.opt.spell = true
