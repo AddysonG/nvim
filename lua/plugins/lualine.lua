@@ -1,10 +1,12 @@
 local colors = require('catppuccin.palettes').get_palette()
+
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
     'catppuccin/nvim',
   },
   config = function()
+    local lualine = require('lualine')
     local custom_theme = require('lualine.themes.catppuccin-nvim')
 
     local function file_icon()
@@ -18,6 +20,11 @@ return {
       if not ok then return {} end
       local _, hl = icons.get('file', vim.fn.expand('%:t'))
       return hl
+    end
+
+    local function indent_component()
+      if not vim.bo.expandtab then return ' tab' end
+      return '󱁐 ' .. vim.bo.tabstop
     end
 
     local function position_icon() return '󰺾' end
@@ -53,7 +60,8 @@ return {
       },
     }
 
-    require('lualine').setup({
+    local faded = { fg = colors.overlay0 }
+    lualine.setup({
       options = {
         icons_enabled = true,
         theme = custom_theme,
@@ -78,7 +86,15 @@ return {
         },
         lualine_b = { 'lsp_status', 'diagnostics' },
         lualine_c = {},
-        lualine_x = {},
+        lualine_x = {
+          { indent_component, color = faded },
+          {
+            'fileformat',
+            symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' },
+            color = faded,
+          },
+          { 'encoding', color = faded },
+        },
         lualine_y = {
           'diff',
           { 'branch', fmt = function(s) return s:match('[^/]+$') or s end },
