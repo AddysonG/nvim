@@ -4,10 +4,9 @@ return {
   opts = {
     query = {
       [''] = 'rainbow-delimiters',
-      lua = 'rainbow-blocks'
+      lua = 'rainbow-blocks',
+      luau = 'rainbow-blocks',
     },
-    condition = function(bufnr)
-      return vim.bo[bufnr].buftype == ''
-    end,
+    condition = function(bufnr) return vim.bo[bufnr].buftype == '' end,
   },
 }

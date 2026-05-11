@@ -2,7 +2,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'seblyng/roslyn.nvim'
+      'seblyng/roslyn.nvim',
     },
     config = function()
       -- Diagnostics
@@ -15,12 +15,13 @@ return {
       vim.lsp.config('roslyn', {
         on_attach = function(client, _)
           -- workaround to ignore missing progress message value
-          local orig = client.handlers["$/progress"] or vim.lsp.handlers["$/progress"]
-          client.handlers["$/progress"] = function(err, result, ctx, cfg)
+          local orig = client.handlers['$/progress']
+            or vim.lsp.handlers['$/progress']
+          client.handlers['$/progress'] = function(err, result, ctx, cfg)
             if result == nil or result.value == nil then return end
             if orig then return orig(err, result, ctx, cfg) end
           end
-        end
+        end,
       })
       vim.lsp.enable('roslyn')
 
@@ -31,13 +32,15 @@ return {
       vim.lsp.config('expert', {
         root_dir = function(bufnr, on_dir)
           local fname = vim.api.nvim_buf_get_name(bufnr)
-          local matches = vim.fs.find({ 'mix.exs' }, { upward = true, limit = 2, path = fname })
+          local matches = vim.fs.find(
+            { 'mix.exs' },
+            { upward = true, limit = 2, path = fname }
+          )
           local child_or_root_path, maybe_umbrella_path = unpack(matches)
-          local root_dir = vim.fs.dirname(maybe_umbrella_path or child_or_root_path)
-          if root_dir then
-            on_dir(root_dir)
-          end
-        end
+          local root_dir =
+            vim.fs.dirname(maybe_umbrella_path or child_or_root_path)
+          if root_dir then on_dir(root_dir) end
+        end,
       })
       vim.lsp.enable('expert')
 
@@ -58,8 +61,8 @@ return {
         settings = {
           implicitProjectConfiguration = {
             checkJs = true,
-          }
-        }
+          },
+        },
       })
       vim.lsp.enable('ts_ls')
 
@@ -69,37 +72,41 @@ return {
       -- Lua
       vim.lsp.enable('lua_ls')
 
+      -- Luau
+      vim.lsp.enable('luau_lsp')
+
       -- Python
       vim.lsp.config('pyright', {
         settings = {
           python = {
-            pythonPath = require('utils.python').get_python_path()
-          }
+            pythonPath = require('utils.python').get_python_path(),
+          },
         },
         before_init = function(_, config)
           if require('utils.python').has_pydantic() then
-            config.settings.python = vim.tbl_deep_extend("force", config.settings.python or {}, {
-              analysis = {
-                diagnosticSeverityOverrides = {
-                  reportAttributeAccessIssue = "none",
-                  reportIncompatibleVariableOverride = "none",
+            config.settings.python =
+              vim.tbl_deep_extend('force', config.settings.python or {}, {
+                analysis = {
+                  diagnosticSeverityOverrides = {
+                    reportAttributeAccessIssue = 'none',
+                    reportIncompatibleVariableOverride = 'none',
+                  },
                 },
-              },
-            })
+              })
           end
-        end
+        end,
       })
       vim.lsp.enable('pyright')
-    end
+    end,
   },
   {
     'seblyng/roslyn.nvim',
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    opts = {}
+    opts = {},
   },
   {
     'mfussenegger/nvim-jdtls',
     dependencies = { 'mfussenegger/nvim-dap' },
-  }
+  },
 }

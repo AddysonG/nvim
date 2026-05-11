@@ -6,6 +6,7 @@ return {
       go = { 'gofmt' },
       javascript = { 'prettier' },
       lua = { 'stylua' },
+      luau = { 'stylua' },
       python = { 'black' },
       typescript = { 'prettier' },
     },

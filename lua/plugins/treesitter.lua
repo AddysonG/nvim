@@ -34,6 +34,7 @@ return {
       'latex',
       'lua',
       'luadoc',
+      'luau',
       'markdown',
       'markdown_inline',
       'prolog',
