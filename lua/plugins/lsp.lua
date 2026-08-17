@@ -72,31 +72,31 @@ return {
       -- Lua
       vim.lsp.enable('lua_ls')
 
-      -- Luau
-      vim.lsp.enable('luau_lsp')
-
       -- Python
-      vim.lsp.config('pyright', {
-        settings = {
-          python = {
-            pythonPath = require('utils.python').get_python_path(),
-          },
-        },
-        before_init = function(_, config)
-          if require('utils.python').has_pydantic() then
-            config.settings.python =
-              vim.tbl_deep_extend('force', config.settings.python or {}, {
-                analysis = {
-                  diagnosticSeverityOverrides = {
-                    reportAttributeAccessIssue = 'none',
-                    reportIncompatibleVariableOverride = 'none',
-                  },
-                },
-              })
+      vim.lsp.enable('ruff')
+      vim.lsp.enable('ty')
+
+      -- QML
+      vim.lsp.config('qmlls', {
+        cmd = { 'qmlls6' },
+      })
+      vim.lsp.enable('qmlls')
+
+      -- Disable Ruff hover since most dedicated LSPs support it
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup(
+          'lsp_attach_disable_ruff_hover',
+          { clear = true }
+        ),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client == nil then return end
+          if client.name == 'ruff' then
+            client.server_capabilities.hoverProvider = false
           end
         end,
+        desc = 'LSP: Disable hover capability from Ruff',
       })
-      vim.lsp.enable('pyright')
     end,
   },
   {
@@ -108,5 +108,16 @@ return {
   {
     'mfussenegger/nvim-jdtls',
     dependencies = { 'mfussenegger/nvim-dap' },
+  },
+  {
+    'lopi-py/luau-lsp.nvim',
+    ft = 'luau',
+    enabled = function() return vim.fn.executable('luau-lsp') == 1 end,
+    ---@module 'luau-lsp.config'
+    ---@type luau-lsp.Config
+    opts = {
+      plugin = { enabled = true },
+      sourcemap = { autogenerate = false },
+    },
   },
 }

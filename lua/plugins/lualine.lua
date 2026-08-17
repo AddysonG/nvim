@@ -1,13 +1,7 @@
-local colors = require('catppuccin.palettes').get_palette()
-
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = {
-    'catppuccin/nvim',
-  },
   config = function()
     local lualine = require('lualine')
-    local custom_theme = require('lualine.themes.catppuccin-nvim')
 
     local function file_icon()
       local ok, icons = pcall(require, 'mini.icons')
@@ -27,7 +21,6 @@ return {
       return '󱁐 ' .. vim.bo.tabstop
     end
 
-    local function position_icon() return '󰺾' end
     local function project_dir()
       return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
     end
@@ -52,20 +45,20 @@ return {
           },
         },
         {
-          position_icon,
-          color = { fg = colors.yellow },
+          'location',
+          color = 'Comment',
+          padding = 0,
         },
-        { 'location', color = { fg = colors.yellow }, padding = 0 },
-        { 'progress', color = { fg = colors.yellow } },
+        { 'progress', color = 'Comment' },
       },
     }
 
-    local faded = { fg = colors.overlay0 }
     lualine.setup({
       options = {
         icons_enabled = true,
-        theme = custom_theme,
+        theme = 'auto',
         component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -87,13 +80,13 @@ return {
         lualine_b = { 'lsp_status', 'diagnostics' },
         lualine_c = {},
         lualine_x = {
-          { indent_component, color = faded },
+          { indent_component, color = 'Comment' },
           {
             'fileformat',
             symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' },
-            color = faded,
+            color = 'Comment',
           },
-          { 'encoding', color = faded },
+          { 'encoding', color = 'Comment' },
         },
         lualine_y = {
           'diff',
