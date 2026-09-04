@@ -79,6 +79,10 @@ return {
       -- QML
       vim.lsp.config('qmlls', {
         cmd = { 'qmlls6' },
+        on_init = function(client)
+          -- Workaround for a bug that causes lots of annoying error popups
+          client.server_capabilities.semanticTokensProvider.full.delta = false
+        end,
       })
       vim.lsp.enable('qmlls')
 

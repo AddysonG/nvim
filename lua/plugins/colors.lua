@@ -14,7 +14,6 @@ return {
         { latte = U.lighten(c.mantle, 0.70, c.base) },
         U.darken(c.surface0, 0.64, c.base)
       )
-      local gutter_bg = c.none
       return {
         Whitespace = { fg = c.surface1 },
         SpecialKey = { fg = c.surface1 },
@@ -22,11 +21,6 @@ return {
 
         WinBar = { fg = c.text, bg = c.none },
         WinBarNC = { fg = c.surface1, bg = c.none },
-        -- Use different background color for line numbers and sign column
-        LineNr = { bg = gutter_bg },
-        CursorLineNr = { fg = c.lavender, bg = c.surface0, style = { 'bold' } },
-        CursorLineSign = { bg = c.surface0, style = { 'bold' } },
-        SignColumn = { bg = gutter_bg },
 
         Visual = { style = {} },
         ColorColumn = { link = 'CursorLine' },

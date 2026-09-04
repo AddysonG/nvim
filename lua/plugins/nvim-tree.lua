@@ -13,14 +13,12 @@ return {
         indent_markers = { enable = true },
         icons = {
           git_placement = 'after',
-          symlink_arrow = "->",
+          symlink_arrow = '->',
           show = {
             folder = true,
-          }
+          },
         },
-        root_folder_label = function(path)
-          return path:gsub('\\', '/')
-        end,
+        root_folder_label = function(path) return path:gsub('\\', '/') end,
       },
       filters = { dotfiles = false },
       hijack_cursor = true,
@@ -30,7 +28,5 @@ return {
       },
       hijack_netrw = false,
     })
-
-    vim.keymap.set('n', '<C-f>e', require('nvim-tree.api').tree.toggle, { desc = 'Open filetree'})
   end,
 }
